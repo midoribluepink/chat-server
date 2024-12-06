@@ -23,7 +23,7 @@ tput civis #Ocultar el cursor de la terminal
 
 echo -e "${yellowColour}[+]${endColour} ${grayColour}¡Bienvenido al interceptor de chats!${endColour}\n" 
 
-echo -e "${yellowColour}[+]${endColour} ${grayColour}A continuación se muestran los${endColour} ${purpleColour}mensajes${endColour} ${redColour}incerceptados${endColour}${grayColour}:${endColour}\n"
+echo -e "${yellowColour}[+]${endColour} ${grayColour}A continuación se muestran los${endColour} ${purpleColour}mensajes${endColour} ${redColour}interceptados${endColour}${grayColour}:${endColour}\n"
 
 stdbuf -oL tshark -i lo -Y "tcp" -e data.data -Tfields 2>/dev/null | while read -r linea; do #Interceptar los datos con tshark
   
@@ -31,7 +31,7 @@ stdbuf -oL tshark -i lo -Y "tcp" -e data.data -Tfields 2>/dev/null | while read 
 
   if [ $linea ]; then #Comprobar que no sea una línea vacía
     
-    echo -e "${blueColour}Incerceptado:${endColour} ${grayColour}$(echo "$linea" | xxd -ps -r)${endColour}\n"
+    echo -e "${blueColour}Interceptado:${endColour} ${grayColour}$(echo "$linea" | xxd -ps -r)${endColour}\n"
 
   fi
 
